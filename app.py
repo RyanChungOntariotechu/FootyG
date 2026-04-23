@@ -3,7 +3,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-headers = {"X-Auth-Token": "0006bd6221f04e118cfe53834f201eda"}
+headers = {"X-Auth-Token": "{API_KEY}"}
 BASE_URL = "https://api.football-data.org/v4/"
 
 def league_display():

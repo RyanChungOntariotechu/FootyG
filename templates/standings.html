@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head><title>{{ id }} Standings</title></head>
+<body>
+    <h1>{{ id }} League Table</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Pos</th>
+                <th>Team</th>
+                <th>PG</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>GF</th>
+                <th>GA</th>
+                <th>GD</th>
+                <th>Pts</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table %}
+            <tr>
+                <td>{{ row['position'] }}</td>
+                <td><a href="/team/{{ row['team_id'] }}">{{ row['team'] }}</a></td>
+                <td>{{ row['PG'] }}</td>
+                <td>{{ row['Won'] }}</td>
+                <td>{{ row['Draw'] }}</td>
+                <td>{{ row['Lost'] }}</td>
+                <td>{{ row['GF'] }}</td>
+                <td>{{ row['GA'] }}</td>
+                <td>{{ row['GD'] }}</td>
+                <td>{{ row['Points'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/">Back to Competitions</a>
+</body>
+</html>

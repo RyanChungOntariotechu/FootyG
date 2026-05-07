@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>{{ team['name'] }}</title></head>
+<body>
+    <img src="{{ team['crest'] }}" alt="{{ team['name'] }}" width="100">
+    <h1>{{ team['coach']['firstName'] }}</h1>
+    <p>Coach: {{ team['coach'] }}</p>
+    <p>Founded: {{ team['founded'] }}</p>
+    <p>Venue: {{ team['venue'] }}</p>
+    <p>Address: {{ team['address'] }}</p>
+    <p>Website: <a href="{{ team['website'] }}">{{ team['website'] }}</a></p>
+
+    <a href="/">Back to Competitions</a>
+</body>
+</html>

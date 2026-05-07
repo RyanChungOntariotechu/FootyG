@@ -1,0 +1,50 @@
+.layout {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    color: rgba(87, 74, 109, 0.315)
+
+}
+
+.title {
+    text-align: left;
+    font-size: 15px;
+}
+.league-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4,max-content);
+    gap: 4px;
+    justify-content: center;
+}
+
+.standings-panel h2,
+.standings-panel p {
+    text-align: center;
+}
+
+.standings-panel table {
+    border: 6px solid black;
+    margin: 20px auto;
+    background-color: #540674;
+    color:rgb(255, 255, 255);
+    
+}
+
+
+
+.league-list button {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: block;
+    background-color: #540674;
+    color: rgb(255, 255, 255);
+    width: 200px;
+    text-align: center;
+    padding: 2px 6px;
+    
+    box-sizing: border-box;
+    margin: 0;
+    text-decoration: none;
+
+}

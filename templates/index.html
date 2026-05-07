@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title>Competitions</title></head>
+<body>
+    <h1>Competitions</h1>
+    <ul>
+    {% for comp in comps %}
+    <li>
+        {{ comp['name'] }} - 
+        {% if comp['type'] == 'LEAGUE' %}
+            <a href="/standings/{{ comp['code'] }}">Standings</a> |
+        {% endif %}
+        <a href="/matches/{{ comp['code'] }}">Matches</a>
+    </li>
+{% endfor %}
+        
+    </ul>
+</body>
+</html>

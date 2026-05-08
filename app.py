@@ -10,7 +10,6 @@ headers = {
     "X-Auth-Token": API_KEY
 }
 
-
 api_key = os.getenv("API_KEY")
 
 BASE_URL = "https://api.football-data.org/v4/"
@@ -136,17 +135,44 @@ def get_team_info(id):
     else:
         print(f"Failed to retrieve data: {response.status_code}")
         return None
+    
+def get_top_scorers(id):
+    url = f"{BASE_URL}competitions/{id}/scorers"
+    response=requests.get(url,headers=headers)
+    if response.status_code == 200:
+        player_data=response.json()
+        scorer_info = player_data["scorers"]
+        return [ {
+            "comp_id": player_data["competition"]["id"],
+            "comp_name": player_data["competition"]["name"],
+            "player_name":scorer["player"]["name"],
+            "position": scorer["player"]["position"],
+            "team": scorer["team"]["name"],
+            "goals": scorer["goals"],
+            "assists": scorer["assists"],
+            "penalties": scorer["penalties"]
+        }
+        for scorer in scorer_info
+        ]
+    else:
+        print(f"Failed to retrieve data: {response.status_code}")
+        return None
 
 #Flask
 @app.route("/")
 def index():
+    return render_template("index.html")
+
+@app.route("/leagues")
+def leagues():
     comps = get_comps()
-    return render_template("index.html", comps=comps)
+    return render_template("league.html", comps=comps)
 
 @app.route("/standings/<id>")
 def standings(id):
     table = get_standings(id)
-    return render_template("standings.html", table=table, id=id)
+    scorers = get_top_scorers(id)
+    return render_template("standings.html", table=table,scorers=scorers, id=id)
 
 @app.route("/matches/<id>")
 def matches(id):
@@ -161,6 +187,7 @@ def team(id):
     if team_info is None:
         return "Team not found", 404
     return render_template("team.html", team=team_info)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

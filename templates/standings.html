@@ -1,84 +1,123 @@
 <!DOCTYPE html>
-<html>
-<head><title>{{ id }} Standings</title></head>
-<body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ id }} Standings</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="page-body">
+
+  <header class="main-header">
+    <a href="/leagues" class="btn">Leagues</a>
+    <a href="/" class="btn">Teams</a>
+    <a href="/" class="btn">Players</a>
+    <a href="/" class="btn">Back to Competitions</a>
+  </header>
+
+  <main class="page-wrap">
     <h1>{{ id }} League Table</h1>
 
-    <div style="display: flex; gap: 40px; align-items: flex-start;">
+    <section class="table-card">
+      <h2>Standings</h2>
+      <table class="data-table">
+        <caption>{{ id }} standings</caption>
+        <thead>
+          <tr>
+            <th scope="col">Pos</th>
+            <th scope="col">Team</th>
+            <th scope="col">PG</th>
+            <th scope="col">W</th>
+            <th scope="col">D</th>
+            <th scope="col">L</th>
+            <th scope="col">GF</th>
+            <th scope="col">GA</th>
+            <th scope="col">GD</th>
+            <th scope="col">Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in table %}
+          <tr>
+            <td>{{ row['position'] }}</td>
+            <td>
+              <a href="/team/{{ row['team_id'] }}">{{ row['team'] }}</a>
+            </td>
+            <td>{{ row['PG'] }}</td>
+            <td>{{ row['Won'] }}</td>
+            <td>{{ row['Draw'] }}</td>
+            <td>{{ row['Lost'] }}</td>
+            <td>{{ row['GF'] }}</td>
+            <td>{{ row['GA'] }}</td>
+            <td>{{ row['GD'] }}</td>
+            <td>{{ row['Points'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
 
-        <!-- Standings -->
-        <div>
-            <h2>Standings</h2>
-            <table border="14">
-                <thead>
-                    <tr>
-                        <th>Pos</th>
-                        <th>Team</th>
-                        <th>PG</th>
-                        <th>W</th>
-                        <th>D</th>
-                        <th>L</th>
-                        <th>GF</th>
-                        <th>GA</th>
-                        <th>GD</th>
-                        <th>Pts</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for row in table %}
-                    <tr>
-                        <td>{{ row['position'] }}</td>
-                        <td><a href="/team/{{ row['team_id'] }}">{{ row['team'] }}</a></td>
-                        <td>{{ row['PG'] }}</td>
-                        <td>{{ row['Won'] }}</td>
-                        <td>{{ row['Draw'] }}</td>
-                        <td>{{ row['Lost'] }}</td>
-                        <td>{{ row['GF'] }}</td>
-                        <td>{{ row['GA'] }}</td>
-                        <td>{{ row['GD'] }}</td>
-                        <td>{{ row['Points'] }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+    <section class="table-card">
+      <h2>Top Scorers</h2>
+      {% if scorers %}
+      <table class="data-table">
+        <caption>{{ id }} top scorers</caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Player</th>
+            <th scope="col">Team</th>
+            <th scope="col">Goals</th>
+            <th scope="col">Assists</th>
+            <th scope="col">Penalties</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for scorer in scorers %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ scorer['player_name'] }}</td>
+            <td>{{ scorer['team'] }}</td>
+            <td>{{ scorer['goals'] }}</td>
+            <td>{{ scorer['assists'] }}</td>
+            <td>{{ scorer['penalties'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>No scorer data available.</p>
+      {% endif %}
+    </section>
 
-        <!-- Top Scorers -->
-        <div>
-            <h2>Top Scorers</h2>
-            {% if scorers %}
-            <table border="14">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Player</th>
-                        <th>Team</th>
-                        <th>Goals</th>
-                        <th>Assists</th>
-                        <th>Penalties</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for scorer in scorers %}
-                    <tr>
-                        <td>{{ loop.index }}</td>
-                        <td>{{ scorer['player_name'] }}</td>
-                        <td>{{ scorer['team'] }}</td>
-                        <td>{{ scorer['goals'] }}</td>
-                        <td>{{ scorer['assists'] }}</td>
-                        <td>{{ scorer['penalties'] }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            {% else %}
-            <p>No scorer data available.</p>
-            {% endif %}
-        </div>
+    <section class="table-card">
+      <h2>{{ id }} Matches</h2>
+      <table class="data-table">
+        <caption>{{ id }} matches</caption>
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Home</th>
+            <th scope="col">Score</th>
+            <th scope="col">Away</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for match in matches %}
+          <tr>
+            <td>{{ match['Date'] }}</td>
+            <td>{{ match['Home-Team'] }}</td>
+            <td>{{ match['Score'] }}</td>
+            <td>{{ match['Away-Team'] }}</td>
+            <td>{{ match['Status'] }}</td>
+            
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </main>
 
-    </div>
-
-    <br>
-    <a href="/">Back to Competitions</a>
 </body>
 </html>

@@ -172,14 +172,8 @@ def leagues():
 def standings(id):
     table = get_standings(id)
     scorers = get_top_scorers(id)
-    return render_template("standings.html", table=table,scorers=scorers, id=id)
-
-@app.route("/matches/<id>")
-def matches(id):
-    match_list = get_matches(id)
-    if match_list is None:
-        return "Matches not available", 404
-    return render_template("matches.html", matches=match_list, id=id)
+    matches = get_matches(id)
+    return render_template("standings.html", table=table, scorers=scorers, matches=matches, id=id)
 
 @app.route("/team/<id>")
 def team(id):

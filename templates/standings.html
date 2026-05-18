@@ -7,20 +7,36 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="page-body">
+  
+  <div class="standing-main">
+    <div class="banner"> 
+      <div class="navbar">
+        <div class="icon">
+          <h2 class="logo">FootyG</h2>
+        </div>
+        <div class="menu">
+          <ul>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/leagues">LEAGUES</a></li>
+            <li><a href="#">TEAMS</a></li>
+            <li><a href="#">PLAYERS</a></li>
+            <li><a href="#">CONTACT</a></li>
+          </ul>
+        </div>
+        <div class="search">
+          <input class="srch" type="search" name="" placeholder="Search">
+          <a href="#"><button class="btn">Search</button></a>
+        </div>
+      </div>          <!-- ← closes navbar -->
+    </div>
 
-  <header class="main-header">
-    <a href="/leagues" class="btn">Leagues</a>
-    <a href="/" class="btn">Teams</a>
-    <a href="/" class="btn">Players</a>
-    <a href="/" class="btn">Back to Competitions</a>
-  </header>
 
   <main class="page-wrap">
-    <h1>{{ id }} League Table</h1>
-
+    <hr>
     <section class="table-card">
-      <h2>Standings</h2>
-      <table class="data-table">
+      <h1>{{ id }} League Table</h1>
+      <h2>Standings</h2> 
+      <table class="league-table">
         <caption>{{ id }} standings</caption>
         <thead>
           <tr>
@@ -56,11 +72,11 @@
         </tbody>
       </table>
     </section>
-
+    <hr class="divide">
     <section class="table-card">
       <h2>Top Scorers</h2>
       {% if scorers %}
-      <table class="data-table">
+      <table class="top-scorer">
         <caption>{{ id }} top scorers</caption>
         <thead>
           <tr>
@@ -89,10 +105,10 @@
       <p>No scorer data available.</p>
       {% endif %}
     </section>
-
+    <hr class="divide">
     <section class="table-card">
       <h2>{{ id }} Matches</h2>
-      <table class="data-table">
+      <table class="match">
         <caption>{{ id }} matches</caption>
         <thead>
           <tr>

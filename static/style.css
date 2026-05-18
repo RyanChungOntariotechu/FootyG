@@ -244,3 +244,84 @@ ul li a:hover{
   margin-top: 40px;
   color: #e8c84a; 
 }
+
+.table-card {
+  color: white;
+  font-family: 'Oswald', sans-serif;
+}
+
+
+.table-card h1 {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 60px;
+  text-decoration: underline;
+  font-family: 'Oswald', sans-serif;
+}
+.table-card h2 {
+  text-align: center;
+  padding-bottom: 20px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.league-table {
+  width: 20%;
+  margin: 0 auto;
+  border-collapse: collapse;
+
+}
+.league-table th,
+.league-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid white;
+  
+}
+.standing-main {
+  background-color: #091229;
+}
+.banner {
+  background-image: 
+    linear-gradient(to top, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 50%),
+    url(Images/Field.jpg);
+  background-size: cover;
+  background-position: center center;
+  height: 65vh;        /* or whatever height you want */
+  width: 100%;
+  position: relative;  /* ← removes it from fixed stacking */
+}
+
+.divide {
+  width: 60%; /* Takes up 80% of the container width */
+  margin: 0 auto; 
+  margin-top: 60px; /* Vertical spacing */
+  margin-bottom: 20px; /* Vertical spacing */   
+}
+
+.top-scorer {
+  width: 20%;
+  margin: 0 auto;
+  border-collapse: collapse;
+
+}
+.top-scorer th,
+.top-scorer td {
+  padding: 12px 14px;
+  border-bottom: 1px solid white;
+  
+} 
+
+
+
+.match {
+  width: 20%;
+  margin: 0 auto;
+  border-collapse: collapse;
+
+}
+.match th,
+.match td {
+  padding: 12px 14px;
+  border-bottom: 1px solid white;
+  
+} 
+
